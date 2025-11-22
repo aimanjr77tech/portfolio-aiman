@@ -34,7 +34,8 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = True
 #DEBUG = os.environ.get("DEBUG", "False").lower() == "true"
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".onrender.com"]
+
 #ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS").split(" ")
 
 # Application definition
@@ -220,5 +221,4 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
-
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".onrender.com"]
