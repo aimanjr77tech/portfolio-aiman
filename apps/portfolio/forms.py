@@ -2,11 +2,11 @@ from django import forms
 from django_recaptcha.fields import ReCaptchaField, ReCaptchaV2Checkbox
 
 class ContactForm(forms.Form):
-    your_name = forms.CharField(label='Your Name', 
+    your_name = forms.CharField(label='Tu nombre',
                                 max_length=100,
                                 widget=forms.TextInput(
                                     attrs={
-                                        'placeholder' : 'Your Name',
+                                        'placeholder' : 'Tu nombre',
                                         'type' : 'text',
                                         'name' : 'name',
                                         'class': 'form-control',
@@ -14,10 +14,10 @@ class ContactForm(forms.Form):
                                         }
                                     ),
                                 required=True)
-    your_email = forms.EmailField(label='Your Email',
+    your_email = forms.EmailField(label='Tu email',
                                   widget=forms.TextInput(
                                     attrs={
-                                        'placeholder' : 'Your Email',
+                                        'placeholder' : 'Tu email',
                                         'type' : 'email',
                                         'name' : 'email',
                                         'class': 'form-control',
@@ -28,7 +28,7 @@ class ContactForm(forms.Form):
     subject = forms.CharField(max_length=200,
                               widget=forms.TextInput(
                                     attrs={
-                                        'placeholder' : 'Subject',
+                                        'placeholder' : 'Asunto',
                                         'type' : 'text',
                                         'name' : 'subject',
                                         'class': 'form-control',
@@ -37,7 +37,7 @@ class ContactForm(forms.Form):
                                     ),
                               required=True)
     message = forms.CharField(widget=forms.Textarea(attrs={
-                                'placeholder' : 'Message',
+                                'placeholder' : 'Mensaje',
                                 'type' : 'text',
                                 'name' : 'message',
                                 'class': 'form-control',
