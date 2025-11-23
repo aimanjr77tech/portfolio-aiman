@@ -222,3 +222,5 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_URL = "/static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".onrender.com"]
+
+WHITENOISE_MANIFEST_STRICT = False
