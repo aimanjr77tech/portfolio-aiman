@@ -140,7 +140,7 @@ DATABASES = {
     }
 }
 
-# Si más adelante usas Postgres en Render, puedes descomentar esto:
+# Si más adelante usas Postgres en Render:
 # DATABASES["default"] = dj_database_url.config(
 #     conn_max_age=600,
 #     default=config("DATABASE_URL", default="")
@@ -178,26 +178,23 @@ USE_TZ = True
 # STATIC / MEDIA
 # =======================
 
+
 STATIC_URL = "/static/"
 
-# Carpeta donde están tus estáticos del proyecto (la que tiene assets, css, js, etc.)
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+# Usamos la propia carpeta 'static' como raíz de estáticos
+# (ya está en tu repo y contiene assets, images, js, etc.)
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-# Carpeta donde collectstatic volcará todo (NO se sube al repo)
-STATIC_ROOT = BASE_DIR / "staticfiles"
+# No usamos STATICFILES_DIRS en este caso
+STATICFILES_DIRS = []
 
-# Whitenoise para servir estáticos en producción
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# Storage simple de Django (sin compresión especial)
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
-# Evita que falle si el manifest antiguo tiene rutas que ya no existen
-WHITENOISE_MANIFEST_STRICT = False
-
-# MEDIA (Cloudinary para ficheros subidos)
 MEDIA_URL = "/media/"
-MEDIA_ROOT = BASE_DIR / "media"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
+# Ficheros subidos: Cloudinary
 DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
 
 # =======================
@@ -232,3 +229,9 @@ cloudinary.config(
 # =======================
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+
