@@ -236,8 +236,19 @@ STATICFILES_FINDERS = [
 ]
 
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-DEFAULT_FROM_EMAIL = 'no-reply@miportafolio.com'
-CONTACT_EMAIL = 'tu_correo@loquesea.com'
+
+
+EMAILHOST_USER = config("EMAIL_HOST_USER")
+EMAILHOST_PASSWD = config("EMAIL_HOST_PASSWORD")
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+
+
+
+# De aquí para abajo usa correos REALES tuyos
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER              # el mismo Gmail, por ejemplo
+CONTACT_EMAIL = config("CONTACT_EMAIL", default=EMAIL_HOST_USER)
+
+EMAIL_TIMEOUT = 10   # opcional, pero recomendable
 
