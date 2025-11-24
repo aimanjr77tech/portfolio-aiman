@@ -192,7 +192,7 @@
                                     {% for description in experience.descriptions.all|dictsort:"order_number" %}
                                     <li class="experience__description">
                                         <span class="experience__circle"></span>
-                                        <div>{{ description.text }}</div>
+                                        <div>{{ description.text|linebreaks }}</div>
                                     </li>
                                     {% endfor %}
                                 </ul>
