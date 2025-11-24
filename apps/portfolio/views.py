@@ -30,6 +30,7 @@ class HomePageView(TemplateView):
 
     def post(self, request, *args, **kwargs):
         form = ContactForm(request.POST)
+        print(form.errors)
         if form.is_valid():
             your_name = form.cleaned_data['your_name']
             your_email = form.cleaned_data['your_email']
