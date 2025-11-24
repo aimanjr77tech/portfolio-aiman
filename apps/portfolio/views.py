@@ -52,8 +52,8 @@ class HomePageView(TemplateView):
             send_mail(
                 subject=f"[PORTFOLIO] {subject}",
                 message=email_body,
-                from_email=settings.EMAIL_HOST_USER,  # tu Gmail
-                recipient_list=[settings.EMAIL_HOST_USER],  # te lo envías a ti
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[settings.CONTACT_EMAIL],
                 fail_silently=False,
             )
 

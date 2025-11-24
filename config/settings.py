@@ -122,7 +122,7 @@ WSGI_APPLICATION = "config.wsgi.application"
 EMAILHOST_USER = config("EMAIL_HOST_USER")
 EMAILHOST_PASSWD = config("EMAIL_HOST_PASSWORD")
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
@@ -234,4 +234,10 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+DEFAULT_FROM_EMAIL = 'no-reply@miportafolio.com'
+CONTACT_EMAIL = 'tu_correo@loquesea.com'
 
