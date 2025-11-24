@@ -53,7 +53,7 @@ INSTALLED_APPS = [
     "apps.portfolio",
     "ckeditor",
     "cloudinary",
-    "django_recaptcha",
+    #"django_recaptcha",
     # NO hace falta incluir whitenoise como app
 ]
 

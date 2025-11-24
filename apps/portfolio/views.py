@@ -10,9 +10,14 @@ from operator import attrgetter
 from django.db.models import Q
 from django.http import JsonResponse
 
+from django.conf import settings
+from django.core.mail import send_mail
+from django.http import JsonResponse
+
+
 class HomePageView(TemplateView):
     template_name = 'portfolio/portfolio_main.html'
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['personal'] = Personal.objects.all()
@@ -31,26 +36,23 @@ class HomePageView(TemplateView):
             subject = form.cleaned_data['subject']
             message = form.cleaned_data['message']
 
-            # cuerpo del email
             email_body = (
-                f"Nuevo mensaje desde tu Portafolio:\n\n"
+                f"Nuevo mensaje desde tu portafolio:\n\n"
                 f"Nombre: {your_name}\n"
                 f"Email: {your_email}\n"
                 f"Asunto: {subject}\n\n"
                 f"Mensaje:\n{message}"
             )
 
-            # **IMPORTANTE: el email solo puede enviarse desde tu Gmail real**
             send_mail(
                 subject=f"[PORTFOLIO] {subject}",
                 message=email_body,
-                from_email=settings.EMAIL_HOST_USER,  # ✔️ tu Gmail real
-                recipient_list=[settings.EMAIL_HOST_USER],  # ✔️ te lo envías a ti
+                from_email=settings.EMAIL_HOST_USER,  # tu Gmail
+                recipient_list=[settings.EMAIL_HOST_USER],  # te lo envías a ti
                 fail_silently=False,
             )
 
             return JsonResponse({'status': 'success', 'message_sent': True})
-
         else:
             errors = {field: form.errors[field][0] for field in form.errors}
             return JsonResponse({'status': 'error', 'errors': errors})
