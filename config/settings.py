@@ -23,6 +23,20 @@ import cloudinary.api
 # =======================
 # RUTAS BASE
 # =======================
+import os
+from pathlib import Path
+
+from decouple import config
+import dj_database_url
+
+# Cloudinary imports
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+# =======================
+# RUTAS BASE
+# =======================
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 CORE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -53,8 +67,7 @@ INSTALLED_APPS = [
     "apps.portfolio",
     "ckeditor",
     "cloudinary",
-    #"django_recaptcha",
-    # NO hace falta incluir whitenoise como app
+    # "django_recaptcha",
 ]
 
 # =======================
@@ -116,18 +129,26 @@ TEMPLATES = [
 WSGI_APPLICATION = "config.wsgi.application"
 
 # =======================
-# EMAIL
+# EMAIL (SendGrid)
 # =======================
 
-EMAILHOST_USER = config("EMAIL_HOST_USER")
-EMAILHOST_PASSWD = config("EMAIL_HOST_PASSWORD")
+# Correo que has verificado como Single Sender en SendGrid
+EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = EMAILHOST_USER
-EMAIL_HOST_PASSWORD = EMAILHOST_PASSWD
+# Backend de envío: SendGrid por API (django-sendgrid-v5)
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY = config("SENDGRID_API_KEY")
+
+# Desde dónde se envían los correos
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+# A dónde quieres recibir los mensajes del formulario
+CONTACT_EMAIL = config("CONTACT_EMAIL", default=DEFAULT_FROM_EMAIL)
+
+# Opcionales
+SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+SENDGRID_ECHO_TO_STDOUT = False
+EMAIL_TIMEOUT = 10
 
 # =======================
 # DATABASE
@@ -178,24 +199,17 @@ USE_TZ = True
 # STATIC / MEDIA
 # =======================
 
-
 STATIC_URL = "/static/"
 
 # Usamos la propia carpeta 'static' como raíz de estáticos
-# (ya está en tu repo y contiene assets, images, js, etc.)
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-# No usamos STATICFILES_DIRS en este caso
 STATICFILES_DIRS = []
 
-# Storage simple de Django (sin compresión especial)
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
-# Ficheros subidos: Cloudinary
-
 
 # =======================
 # RECAPTCHA
@@ -234,21 +248,3 @@ STATICFILES_FINDERS = [
     "django.contrib.staticfiles.finders.FileSystemFinder",
     "django.contrib.staticfiles.finders.AppDirectoriesFinder",
 ]
-
-
-
-
-
-EMAILHOST_USER = config("EMAIL_HOST_USER")
-EMAILHOST_PASSWD = config("EMAIL_HOST_PASSWORD")
-
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-
-
-
-# De aquí para abajo usa correos REALES tuyos
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER              # el mismo Gmail, por ejemplo
-CONTACT_EMAIL = config("CONTACT_EMAIL", default=EMAIL_HOST_USER)
-
-EMAIL_TIMEOUT = 10   # opcional, pero recomendable
-
