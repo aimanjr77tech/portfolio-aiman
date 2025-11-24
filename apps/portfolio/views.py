@@ -29,9 +29,13 @@ class HomePageView(TemplateView):
         return context
 
     def post(self, request, *args, **kwargs):
+        print("⚡ POST RECIBIDO")
         form = ContactForm(request.POST)
+        print("POST DATA:", request.POST)
+        print("ERRORES FORM:", form.errors)
         print(form.errors)
         if form.is_valid():
+            print("✅ FORMULARIO VÁLIDO")
             your_name = form.cleaned_data['your_name']
             your_email = form.cleaned_data['your_email']
             subject = form.cleaned_data['subject']
@@ -55,6 +59,7 @@ class HomePageView(TemplateView):
 
             return JsonResponse({'status': 'success', 'message_sent': True})
         else:
+            print("❌ FORMULARIO INVÁLIDO")
             errors = {field: form.errors[field][0] for field in form.errors}
             return JsonResponse({'status': 'error', 'errors': errors})
 
