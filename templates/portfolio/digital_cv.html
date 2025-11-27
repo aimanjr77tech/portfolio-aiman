@@ -1,6 +1,6 @@
 {% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -9,11 +9,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="I am a seasoned Technology Support Engineer with a strong foundation in Linux administration, cloud technology, automation, and self taught full stack developer."
+      content="Desarrollador Backend con experiencia en Python y Django, enfocado en crear APIs robustas y aplicaciones web escalables."
     />
     <meta
       name="keywords"
-      content="Aiman Benslaiman"
+      content="Aiman Benslaiman, Backend Developer, Python, Django"
     />
     <meta name="author" content="Aiman Benslaiman" />
 
@@ -71,182 +71,258 @@
             </div>
         </nav>
     </header>
+
     <main class="l-main bd-container">
-        <!-- All elements within this div, is generated in PDF -->
+        <!-- Todo lo de dentro de este div se usa para el PDF -->
         <div class="resume" id="area-cv">
             <div class="resume__left">
-                {% for personal_info in personal %}
                 <!--========== HOME ==========-->
                 <section class="home" id="home">
                     <div class="home__container section bd-grid">
                         <div class="home__data bd-grid">
-                            <h1 class="home__title"><b>{{ personal_info.name }}</b></h1>
-                            <h3 class="home__profession">{{ personal_info.role }}</h3>
+                            <h1 class="home__title"><b>Aiman Benslaiman</b></h1>
+                            <h3 class="home__profession">Desarrollador Backend</h3>
                             <!-- View CV -->
                             <div>
-                                <a href="{{ personal_info.cv_link }}" target="_blank"
-                                    class="home__button-movil">Download</a>
+                                <!-- Enlaza a tu CV en PDF (Drive, Notion, etc.) -->
+                                <a href="https://tulink-al-cv.com" target="_blank"
+                                   class="home__button-movil">Download</a>
                             </div>
                         </div>
                         <div class="home__address bd-grid">
                             <span class="home__information">
-                                <i class='bx bx-map home__icon'></i> {{ personal_info.location }}
+                                <i class='bx bx-map home__icon'></i> Málaga, España
                             </span>
-                            <a href="mailto:aimanecom77@gmail.com" target="_black" class="home__information">
-                                <i class='bx bx-envelope home__icon'></i> {{ personal_info.email }}
+                            <a href="mailto:aimanecom77@gmail.com" target="_blank" class="home__information">
+                                <i class='bx bx-envelope home__icon'></i> aimanecom77@gmail.com
                             </a>
-                            <a href="tel:+639219607099" target="_black" class="home__information">
-                                <i class='bx bx-phone home__icon'></i> {{ personal_info.phone }}
+                            <a href="tel:+34123456789" target="_blank" class="home__information">
+                                <i class='bx bx-phone home__icon'></i> +34 123 456 789
                             </a>
                         </div>
                     </div>
-                    <!-- Theme change button -->
+                    <!-- Botón tema -->
                     <i class="bx bx-moon change-theme" title="Theme" id="theme-button"></i>
+                    <!-- Botón descargar PDF (mismo enlace que arriba o tu futuro generador de PDF) -->
                     <a title="Download PDF" class="bx bx-download generate-pdf"
-                        href="{{ personal_info.cv_link }}" target="_blank"></a>
+                       href="https://tulink-al-cv.com" target="_blank"></a>
                 </section>
+
                 <!--========== SOCIAL ==========-->
                 <section class="social section">
                     <h2 class="section-title">SOCIAL</h2>
 
                     <div class="social__container bd-grid">
-                        <a href="{{ personal_info.linkedin }}" target="_blank" class="social__link">
+                        <a href="https://www.linkedin.com/in/aimanbenslaiman" target="_blank" class="social__link">
                             <i class='bx bxl-linkedin-square social__icon'></i> @aimanbenslaiman
                         </a>
 
-                        <a href="{{ personal_info.github }}" target="_blank" class="social__link">
+                        <a href="https://github.com/aimanjr77tech" target="_blank" class="social__link">
                             <i class='bx bxl-github social__icon'></i> @aimanjr77tech
                         </a>
                     </div>
                 </section>
+
                 <!--========== PROFILE ==========-->
                 <section class="profile section" id="profile">
                     <h2 class="section-title">Perfil</h2>
                     <p class="profile__description">
-                        {{ personal_info.cv_description }}
+                        Desarrollador Backend con enfoque en Python y Django, apasionado por construir APIs limpias,
+                        escalables y bien documentadas. Me interesa especialmente el diseño de arquitecturas sólidas,
+                        la automatización de procesos y las buenas prácticas de desarrollo (tests, patrones de diseño,
+                        clean architecture). Disfruto trabajando en equipo, aprendiendo tecnologías nuevas y
+                        participando en proyectos donde pueda aportar tanto en la parte técnica como en la resolución
+                        de problemas de negocio.
                     </p>
                 </section>
-                {% endfor %}
+
                 <!--========== EDUCATION ==========-->
                 <section class="education section" id="education">
                     <h2 class="section-title">Educación</h2>
-                    {% for education_info in education %}
+
                     <div class="education__container bd-grid">
+                        <!-- Ejemplo 1 -->
                         <div class="education__content">
                             <div class="education__time">
                                 <span class="education__rounder"></span>
                                 <span class="education__line"></span>
                             </div>
                             <div class="education__data bd-grid">
-                                <h3 class="education__title">{{ education_info.degree }}</h3>
-                                <span class="education__studies">{{ education_info.school_name }}</span>
-                                <span class="education__year">
-                                    {{ education_info.date_range }}
-                                    {% if education_info.is_current %}
-                                        - Present
-                                    {% endif %}
-                                </span>
+                                <h3 class="education__title">Grado en X (ejemplo)</h3>
+                                <span class="education__studies">Nombre del centro educativo</span>
+                                <span class="education__year">2020 - 2024</span>
+                            </div>
+                        </div>
+
+                        <!-- Ejemplo 2 -->
+                        <div class="education__content">
+                            <div class="education__time">
+                                <span class="education__rounder"></span>
+                                <!-- Sin línea si es el último -->
+                            </div>
+                            <div class="education__data bd-grid">
+                                <h3 class="education__title">Formación en Desarrollo Backend</h3>
+                                <span class="education__studies">Cursos online y proyectos personales</span>
+                                <span class="education__year">2022 - Presente</span>
                             </div>
                         </div>
                     </div>
-                    <br>
-                    {% endfor %}
                 </section>
+
                 <!--========== SKILLS  ==========-->
                 <section class="skills section hide" id="skills">
                     <h2 class="section-title">Skills</h2>
 
                     <div class="skills__content bd-grid">
-                        {% for technologies_skills in technologies %}
                         <div class="skills__name">
-                            <span class="skills__circle"></span> {{ technologies_skills.name }}
+                            <span class="skills__circle"></span> Python
                         </div>
-                        {% endfor %}
+                        <div class="skills__name">
+                            <span class="skills__circle"></span> Django & Django REST Framework
+                        </div>
+                        <div class="skills__name">
+                            <span class="skills__circle"></span> PostgreSQL / SQLite
+                        </div>
+                        <div class="skills__name">
+                            <span class="skills__circle"></span> HTML, CSS, JavaScript básico
+                        </div>
+                        <div class="skills__name">
+                            <span class="skills__circle"></span> Git & GitHub
+                        </div>
+                        <div class="skills__name">
+                            <span class="skills__circle"></span> Linux & línea de comandos
+                        </div>
+                        <div class="skills__name">
+                            <span class="skills__circle"></span> Docker (conceptos básicos)
+                        </div>
                     </div>
+
                     <a href="#" class="skills-button" id="skills-button">See More</a>
                 </section>
             </div>
+
             <div class="resume__right">
                 <!--========== EXPERIENCE ==========-->
                 <section class="experience section" id="experience">
                     <h2 class="section-title">Experiencia</h2>
                     <div class="experience__container bd-grid">
-                        {% for experience in experiences %}
+
+                        <!-- Experiencia 1 -->
                         <div class="experience__content">
                             <div class="experience__time">
                                 <span class="experience__rounder"></span>
                                 <span class="experience__line"></span>
                             </div>
                             <div class="experience__data bd-grid">
-                                <h3 class="experience__title"><strong>{{ experience.title }}</strong></h3>
+                                <h3 class="experience__title"><strong>Proyecto: Plataforma Integral de Gestión Empresarial</strong></h3>
                                 <span class="experience__company">
-                                    {{ experience.formatted_start_date }} - 
-                                    {% if experience.is_current %}
-                                    Present
-                                    {% else %}
-                                    {{ experience.formatted_end_date }}
-                                    {% endif %}
-                                    | {{ experience.company }}
+                                    2024 - Presente | Proyecto personal
                                 </span>
                                 <ul class="experience__list">
-                                    {% for description in experience.descriptions.all|dictsort:"order_number" %}
                                     <li class="experience__description">
                                         <span class="experience__circle"></span>
-                                        <div>{{ description.text|linebreaks }}</div>
+                                        <div>Diseño y desarrollo de una plataforma web para gestionar clientes, proyectos y facturación, usando Django como backend.</div>
                                     </li>
-                                    {% endfor %}
+                                    <li class="experience__description">
+                                        <span class="experience__circle"></span>
+                                        <div>Implementación de panel de administración personalizado para gestionar usuarios y roles.</div>
+                                    </li>
+                                    <li class="experience__description">
+                                        <span class="experience__circle"></span>
+                                        <div>Despliegue en la nube utilizando Render y bases de datos gestionadas.</div>
+                                    </li>
                                 </ul>
                                 <div class="experience__technologies">
                                     <span>Technologies used</span>
                                     <ul class="experience__technologies-list">
-                                        {% for technology in experience.technologies.all %}
-                                        <li class="experience__technologies-item">{{ technology.name }}</li>
-                                        {% endfor %}
+                                        <li class="experience__technologies-item">Python</li>
+                                        <li class="experience__technologies-item">Django</li>
+                                        <li class="experience__technologies-item">PostgreSQL</li>
+                                        <li class="experience__technologies-item">HTML/CSS</li>
+                                        <li class="experience__technologies-item">Render</li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        {% endfor %}
+
+                        <!-- Experiencia 2 -->
+                        <div class="experience__content">
+                            <div class="experience__time">
+                                <span class="experience__rounder"></span>
+                                <!-- último sin línea -->
+                            </div>
+                            <div class="experience__data bd-grid">
+                                <h3 class="experience__title"><strong>Landing page para agencia inmobiliaria</strong></h3>
+                                <span class="experience__company">
+                                    2023 | Proyecto personal
+                                </span>
+                                <ul class="experience__list">
+                                    <li class="experience__description">
+                                        <span class="experience__circle"></span>
+                                        <div>Diseño y desarrollo de una landing page orientada a captación de clientes.</div>
+                                    </li>
+                                    <li class="experience__description">
+                                        <span class="experience__circle"></span>
+                                        <div>Integración de formularios de contacto y secciones dinámicas.</div>
+                                    </li>
+                                </ul>
+                                <div class="experience__technologies">
+                                    <span>Technologies used</span>
+                                    <ul class="experience__technologies-list">
+                                        <li class="experience__technologies-item">HTML/CSS</li>
+                                        <li class="experience__technologies-item">JavaScript</li>
+                                        <li class="experience__technologies-item">Django (para el backend básico)</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </section>
 
                 <!--========== CERTIFICATES ==========-->
-
-                <!--
                 <section class="certificate section" id="certificates">
                     <h2 class="section-title">Certificates</h2>
 
                     <div class="certificate__container bd-grid">
-                        {% for issuer, portfolio_group in grouped_portfolio.items %}
+                        <div class="certificate__content bd-grid">
+                            <h3 class="certificate__title">
+                                Backend Development with Python (Ejemplo)
+                                <a class="nav__linkcert" href="https://link-al-certificado.com" target="_blank">
+                                    <i class='bx bx-link-external'></i>
+                                </a>
+                            </h3>
+                            <span class="certificate__company">Plataforma de formación online</span>
+                        </div>
 
-                            <div class="certificate__content bd-grid">
-                                {% for portfolio_info in portfolio_group %}
-                                    <h3 class="certificate__title">{{ portfolio_info.name }} ({{ portfolio_info.year }}) <a class="nav__linkcert" href="{{ portfolio_info.link3 }}" target="_blank"><i class='bx bx-link-external'></i></a></h3>
-                                {% endfor %}
-                                <span class="certificate__company">{{ issuer }}</span>
-                            </div>
-                        {% endfor %}
+                        <div class="certificate__content bd-grid">
+                            <h3 class="certificate__title">
+                                Git & GitHub Essentials (Ejemplo)
+                            </h3>
+                            <span class="certificate__company">Otra plataforma</span>
+                        </div>
                     </div>
-                </section> -->
+                </section>
+
                 <!--========== INTERESTS ==========-->
                 <section class="interests section">
                     <h2 class="section-title">Interés</h2>
                     <div class="interests__container bd-grid">
                         <div class="interests__content">
                             <i class="bx bx-network-chart interests__icon"></i>
-                            <span class="interests__name">APIs & Microservices</span>
+                            <span class="interests__name">APIs & Microservicios</span>
                         </div>
                         <div class="interests__content">
                             <i class="bx bx-terminal interests__icon"></i>
-                            <span class="interests__name">Linux & DevOps Tools</span>
+                            <span class="interests__name">Linux & DevOps</span>
                         </div>
                         <div class="interests__content">
                             <i class="bx bx-code-curly interests__icon"></i>
-                            <span class="interests__name">Automation & Scripting</span>
+                            <span class="interests__name">Automatización & Scripting</span>
                         </div>
                         <div class="interests__content">
                             <i class="bx bx-data interests__icon"></i>
-                            <span class="interests__name">Database Design</span>
+                            <span class="interests__name">Bases de datos</span>
                         </div>
                         <div class="interests__content">
                             <i class="bx bx-layer interests__icon"></i>
@@ -256,12 +332,15 @@
                 </section>
             </div>
         </div>
-        <p class="updated">Updated: Oct 15, 2023</p>
+
+        <p class="updated">Updated: Nov 2025</p>
     </main>
+
     <!--========== SCROLL TOP ==========-->
     <a href="#" class="scrolltop" id="scroll-top">
         <i class='bx bx-up-arrow-alt scrollttop__icon'></i>
     </a>
+
     <!--========== MAIN JS ==========-->
     <script src="{% static 'assets/js/main_cv.js' %}"></script>
 </body>
