@@ -201,10 +201,11 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 
-# Usamos la propia carpeta 'static' como raíz de estáticos
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),  # aquí está tu carpeta con images/
+]
 
-STATICFILES_DIRS = []
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 
 STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
 
