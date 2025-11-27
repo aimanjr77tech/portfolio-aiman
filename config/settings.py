@@ -136,8 +136,10 @@ WSGI_APPLICATION = "config.wsgi.application"
 EMAIL_HOST_USER = config("EMAIL_HOST_USER")
 
 # Backend de envío: SendGrid por API (django-sendgrid-v5)
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-SENDGRID_API_KEY = config("SENDGRID_API_KEY")
+#EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+#SENDGRID_API_KEY = config("SENDGRID_API_KEY")
+
+SENDGRID_API_KEY = config("SENDGRID_API_KEY", default=None)
 
 # Desde dónde se envían los correos
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
@@ -146,8 +148,8 @@ DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 CONTACT_EMAIL = config("CONTACT_EMAIL", default=DEFAULT_FROM_EMAIL)
 
 # Opcionales
-SENDGRID_SANDBOX_MODE_IN_DEBUG = False
-SENDGRID_ECHO_TO_STDOUT = False
+#SENDGRID_SANDBOX_MODE_IN_DEBUG = False
+#SENDGRID_ECHO_TO_STDOUT = False
 EMAIL_TIMEOUT = 10
 
 # =======================
