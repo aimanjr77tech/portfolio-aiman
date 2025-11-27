@@ -132,24 +132,19 @@ WSGI_APPLICATION = "config.wsgi.application"
 # EMAIL (SendGrid)
 # =======================
 
-# Correo que has verificado como Single Sender en SendGrid
-EMAIL_HOST_USER = config("EMAIL_HOST_USER")
+from decouple import config
 
-# Backend de envío: SendGrid por API (django-sendgrid-v5)
-#EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-#SENDGRID_API_KEY = config("SENDGRID_API_KEY")
+# Correo “from”: si no hay env, usa uno genérico
+EMAIL_HOST_USER = config("EMAIL_HOST_USER", default="no-reply@example.com")
 
-SENDGRID_API_KEY = config("SENDGRID_API_KEY", default=None)
+# No usamos SendGrid, solo mostramos los correos en consola / logs
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
-# Desde dónde se envían los correos
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 
 # A dónde quieres recibir los mensajes del formulario
 CONTACT_EMAIL = config("CONTACT_EMAIL", default=DEFAULT_FROM_EMAIL)
 
-# Opcionales
-#SENDGRID_SANDBOX_MODE_IN_DEBUG = False
-#SENDGRID_ECHO_TO_STDOUT = False
 EMAIL_TIMEOUT = 10
 
 # =======================
