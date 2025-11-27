@@ -18,62 +18,81 @@
       </div>
 
       <div class="row portfolio-container">
-        {% for portfolio_items in portfolio %}
-        <div class="portfolio-box portfolio-item {{ portfolio_items.filter }}">
-            <div class="img-wrapper">
+  {% for portfolio_items in portfolio %}
+    <div class="portfolio-box portfolio-item {{ portfolio_items.filter }}">
+      <div class="img-wrapper">
 
-              {# ============================== #}
-              {#   IMAGEN ESTÁTICA POR PROYECTO #}
-              {# ============================== #}
+        {# IMAGEN ESTÁTICA POR PROYECTO #}
+        {% if portfolio_items.id == 1 %}
+          <a
+            data-fancybox
+            data-src="{% static 'images/portfolio/project/cap1.png' %}"
+            data-caption="{{ portfolio_items.name }}"
+          >
+            <img
+              src="{% static 'images/portfolio/project/cap1.png' %}"
+              class="img-inner"
+              alt="{{ portfolio_items.name }} Image"
+              loading="lazy"
+              style="{{ portfolio_items.object_fit }}"
+            />
+          </a>
 
-              {% if portfolio_items.id == 1 %}
-                  {% set image_path = "images/portfolio/project/cap2.png" %}
-              {% elif portfolio_items.id == 2 %}
-                  {% set image_path = "images/portfolio/project/cap1.png" %}
-              {% elif portfolio_items.id == 3 %}
-                  {% set image_path = "images/projects/f3.png" %}
-              {% else %}
-                  {# Imagen por defecto #}
-                  {% set image_path = "images/projects/default.png" %}
-              {% endif %}
+        {% elif portfolio_items.id == 2 %}
+          <a
+            data-fancybox
+            data-src="{% static 'images/portfolio/project/cap2.png' %}"
+            data-caption="{{ portfolio_items.name }}"
+          >
+            <img
+              src="{% static 'images/portfolio/project/cap2.png' %}"
+              class="img-inner"
+              alt="{{ portfolio_items.name }} Image"
+              loading="lazy"
+              style="{{ portfolio_items.object_fit }}"
+            />
+          </a>
 
-              <a
-                data-fancybox
-                data-src="{% static image_path %}"
-                data-caption="{{ portfolio_items.name }}"
-              >
-                <img
-                  src="{% static image_path %}"
-                  class="img-inner"
-                  alt="{{ portfolio_items.name }} Image"
-                  loading="lazy"
-                  style="{{ portfolio_items.object_fit }}"
-                />
-              </a>
+        {% else %}
+          {# Imagen por defecto para cualquier otro proyecto #}
+          <a
+            data-fancybox
+            data-src="{% static 'images/portfolio/project/default.png' %}"
+            data-caption="{{ portfolio_items.name }}"
+          >
+            <img
+              src="{% static 'images/portfolio/project/default.png' %}"
+              class="img-inner"
+              alt="{{ portfolio_items.name }} Image"
+              loading="lazy"
+              style="{{ portfolio_items.object_fit }}"
+            />
+          </a>
+        {% endif %}
 
-            </div>
-
-            <div class="protect-imgwrapper">
-              <h5><b>{{ portfolio_items.name }}</b></h5>
-            </div>
-
-            <div class="imgwrapper-link">
-              {% if portfolio_items.link1 and portfolio_items.link2 %}
-                <a href="{{ portfolio_items.link1 }}" target="_blank">
-                  <i class="fa-regular fa-code fa-sm"></i> Code
-                </a>
-                <a href="{{ portfolio_items.link2 }}" target="_blank">
-                  <i class="fa-solid fa-eye fa-sm"></i> View
-                </a>
-              {% else %}
-                <a href="{{ portfolio_items.link3 }}" target="_blank">
-                  <i class="fa-regular fa-circle-check fa-sm"></i> Verify
-                </a>
-              {% endif %}
-            </div>
-
-        </div>
-        {% endfor %}
       </div>
+
+      <div class="protect-imgwrapper">
+        <h5><b>{{ portfolio_items.name }}</b></h5>
+      </div>
+
+      <div class="imgwrapper-link">
+        {% if portfolio_items.link1 and portfolio_items.link2 %}
+          <a href="{{ portfolio_items.link1 }}" target="_blank">
+            <i class="fa-regular fa-code fa-sm"></i> Code
+          </a>
+          <a href="{{ portfolio_items.link2 }}" target="_blank">
+            <i class="fa-solid fa-eye fa-sm"></i> View
+          </a>
+        {% else %}
+          <a href="{{ portfolio_items.link3 }}" target="_blank">
+            <i class="fa-regular fa-circle-check fa-sm"></i> Verify
+          </a>
+        {% endif %}
+      </div>
+    </div>
+  {% endfor %}
+</div>
+
     </div>
 </section>
