@@ -5,6 +5,7 @@
         <h2>Portafolio</h2>
         <p>Mis Proyectos</p>
       </div>
+
       <div class="row">
         <div class="col-lg-12 d-flex justify-content-center">
           <ul id="portfolio-flters">
@@ -15,27 +16,47 @@
           </ul>
         </div>
       </div>
+
       <div class="row portfolio-container">
         {% for portfolio_items in portfolio %}
         <div class="portfolio-box portfolio-item {{ portfolio_items.filter }}">
             <div class="img-wrapper">
+
+              {# ============================== #}
+              {#   IMAGEN ESTÁTICA POR PROYECTO #}
+              {# ============================== #}
+
+              {% if portfolio_items.id == 1 %}
+                  {% set image_path = "images/portfolio/project/cap2.png" %}
+              {% elif portfolio_items.id == 2 %}
+                  {% set image_path = "images/portfolio/project/cap1.png" %}
+              {% elif portfolio_items.id == 3 %}
+                  {% set image_path = "images/projects/f3.png" %}
+              {% else %}
+                  {# Imagen por defecto #}
+                  {% set image_path = "images/projects/default.png" %}
+              {% endif %}
+
               <a
                 data-fancybox
-                data-src="{{ portfolio_items.photo.url }}"
+                data-src="{% static image_path %}"
                 data-caption="{{ portfolio_items.name }}"
               >
-              <img
-                src="{%  static 'images/profile_pics/about/f1.png' %}"
-                class="img-inner"
-                alt="{{ portfolio_items.name }} Image"
-                loading="lazy"
-                style="{{ portfolio_items.object_fit }}"
-              />
+                <img
+                  src="{% static image_path %}"
+                  class="img-inner"
+                  alt="{{ portfolio_items.name }} Image"
+                  loading="lazy"
+                  style="{{ portfolio_items.object_fit }}"
+                />
               </a>
+
             </div>
+
             <div class="protect-imgwrapper">
               <h5><b>{{ portfolio_items.name }}</b></h5>
             </div>
+
             <div class="imgwrapper-link">
               {% if portfolio_items.link1 and portfolio_items.link2 %}
                 <a href="{{ portfolio_items.link1 }}" target="_blank">
@@ -50,8 +71,9 @@
                 </a>
               {% endif %}
             </div>
+
         </div>
         {% endfor %}
       </div>
     </div>
-  </section> 
+</section>
